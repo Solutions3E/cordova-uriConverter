@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<plugin xmlns="http://www.phonegap.com/ns/plugins/1.0"
+        id="com.eeesolutions.uriconverter"
+        version="1.0">
+
+  <name>Uri Converter</name>
+	<description>
+		This Android Phonegap plugin allows converting Android content uri's to file uri's and viceversa and thereby providing access to Android phone contact pictures,media files etc saved by the users.
+	</description>
+	
+  <engines>
+    <engine name="cordova" version=">=3.0.0"/>
+  </engines>
+
+  <asset src="www/uriconverter.js" target="js/uriconverter.js"/>
+
+  <js-module src="www/uriconverter.js" name="uriconverter">
+    <clobbers target="uriconverter" />
+  </js-module>
+
+  <platform name="android">
+
+    <config-file target="res/xml/config.xml" parent="/*">
+      <feature name="UriConverter">
+        <param name="android-package" value="com.eeesolutions.plugin.UriConverter"/>
+      </feature>
+    </config-file>
+
+    <config-file target="AndroidManifest.xml" parent="/manifest">
+      <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+      <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+      <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    </config-file>
+
+    <source-file src="src/android/UriConverter.java" target-dir="src/com/example/plugin/"/>
+  </platform>
+
+</plugin>
